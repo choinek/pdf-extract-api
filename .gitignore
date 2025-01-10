@@ -8,3 +8,5 @@ storage/*
 client_secret*.json    
 .env.localhost
 .idea
+# Python good practice ignore
+*.egg-info/
