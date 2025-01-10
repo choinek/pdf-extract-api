@@ -1,5 +1,6 @@
 import importlib
 import os
+import traceback
 from typing import Dict, Any
 
 _cache: Dict[str, Dict[str, Any]] = {}  # Cache for loaded modules
@@ -26,8 +27,10 @@ def dynamic_load_submodules(package_name: str, package_path: str) -> None:
                     module = importlib.import_module(f"{package_name}.{module_name}")
                     modules[module_name] = module
                 except Exception as e:
-                    raise ImportError(f"Failed to import module '{module_name}' in '{package_name}': {e}")
-        _cache[package_name] = modules
+                    tb = traceback.format_exc()
+                    raise ImportError(
+                        f"Failed to import module '{module_name}' in '{package_name} ({package_path})': {e}\n\nOriginal traceback:\n{tb}"
+                ) from e
 
     globals().update(_cache[package_name])
 
