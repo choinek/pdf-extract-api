@@ -27,7 +27,7 @@ echo "Downloading models"
 RUN python -c 'from marker.models import load_all_models; load_all_models()'
 
 echo "Starting Celery worker"
-cd app
+cd text-extract-api
 celery -A main.celery worker --loglevel=info --pool=solo & # to scale by concurrent processing please run this line as many times as many concurrent processess you want to have running
 
 echo "Starting FastAPI server"

@@ -1,8 +1,10 @@
+import tempfile
 from extract.ocr_strategies.ocr_strategy import OCRStrategy
 import ollama
 import os
 import time
 from files.file_formats import *
+
 
 class LlamaVisionOCRStrategy(OCRStrategy):
     """Llama 3.2 Vision OCR Strategy"""
@@ -18,13 +20,20 @@ class LlamaVisionOCRStrategy(OCRStrategy):
         ocr_percent_done = 0
         num_pages = len(images)
         for i, image in enumerate(images):
+
             img_str = image.unify(image).to_base64();
+
+            temp_filename = None
+            with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as temp_file:
+                image.save(temp_file, format="JPEG")
+                temp_filename = temp_file.name
 
             # Generate text using the Llama 3.2 Vision model
             try:
                 response = ollama.chat("llama3.2-vision", [{
                     'content': os.getenv('LLAMA_VISION_PROMPT', "You are OCR. Convert image to markdown."),
-                    'images': [img_str]
+#                    'images': [img_str]
+                    'images': [temp_filename]
                 }], stream=True)
                 num_chunk = 1
                 for chunk in response:

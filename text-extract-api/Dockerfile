@@ -28,7 +28,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code
 COPY . .
 
-# Expose the port the FastAPI app runs on
+# Expose the port the FastAPI text-extract-api runs on
 EXPOSE 8000
 
 # Define the command to run your application
