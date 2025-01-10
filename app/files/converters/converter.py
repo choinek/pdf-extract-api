@@ -1,8 +1,9 @@
 from typing import Iterator, List
 
-from files.file_format import FileFormat
+from .. import FileFormat
 
-class BaseConverter:
+
+class Converter:
     @staticmethod
     def convert(file_format: FileFormat) -> Iterator[FileFormat]:
         raise NotImplementedError("Subclasses must implement the `convert` method.")

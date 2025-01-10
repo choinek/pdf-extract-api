@@ -2,9 +2,9 @@ from enum import Enum
 from typing import Type
 
 from .file_format import FileFormat
-from ..utils.image_processor import ImageProcessor
 
-class ImageFormat(Enum):
+
+class ImageSupportedExportFormats(Enum):
     JPEG = "JPEG"
     PNG = "PNG"
     BMP = "BMP"
@@ -25,5 +25,6 @@ class ImageFileFormat(FileFormat):
         return cls
 
     def unify(self) -> "FileFormat":
-        unified_image = ImageProcessor.unify_image(self.to_binary, ImageFormat.JPEG)
+        from ..utils.image_processor import ImageProcessor
+        unified_image = ImageProcessor.unify_image(self.to_binary, ImageSupportedExportFormats.JPEG)
         return ImageFileFormat.from_binary(unified_image, self.filename, self.mime_type)
