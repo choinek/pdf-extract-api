@@ -3,12 +3,6 @@ from PIL import Image
 from io import BytesIO
 import base64
 
-class ImageFormat(Enum):
-    JPEG = "JPEG"
-    PNG = "PNG"
-    BMP = "BMP"
-    TIFF = "TIFF"
-
 class ImageProcessor:
     @staticmethod
     def unify_image(image_bytes: bytes, target_format: ImageFormat ="JPEG", convert_to_rgb: bool=True) -> bytes:

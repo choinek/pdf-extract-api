@@ -1,8 +1,8 @@
 import os
 import yaml
-from files.storage_strategies.local_filesystem import LocalFilesystemStorageStrategy
-from files.storage_strategies.google_drive import GoogleDriveStorageStrategy
-from files.storage_strategies.aws_s3 import AWSS3StorageStrategy
+from .storage_strategies.local_filesystem import LocalFilesystemStorageStrategy
+from .storage_strategies.google_drive import GoogleDriveStorageStrategy
+from .storage_strategies.aws_s3 import AWSS3StorageStrategy
 from enum import Enum
 
 class StorageStrategy(Enum):

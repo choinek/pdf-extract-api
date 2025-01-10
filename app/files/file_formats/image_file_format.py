@@ -1,7 +1,15 @@
+from enum import Enum
 from typing import Type
 
-from extract import FileFormat
-from extract import ImageProcessor
+from .file_format import FileFormat
+from ..utils.image_processor import ImageProcessor
+
+class ImageFormat(Enum):
+    JPEG = "JPEG"
+    PNG = "PNG"
+    BMP = "BMP"
+    TIFF = "TIFF"
+
 
 class ImageFileFormat(FileFormat):
     @staticmethod
@@ -11,7 +19,6 @@ class ImageFileFormat(FileFormat):
     @staticmethod
     def is_pageable() -> bool:
         return False
-
 
     @classmethod
     def default_iterator_file_format(cls) -> Type["ImageFileFormat"]:

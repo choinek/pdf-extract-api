@@ -2,7 +2,7 @@ import pytesseract
 import cv2
 import numpy as np
 
-from extract import FileFormat
+from files.file_formats import FileFormat
 from extract import ImageFileFormat
 from extract.ocr_strategies.ocr_strategy import OCRStrategy
 

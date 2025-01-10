@@ -1,4 +1,9 @@
+import sys
+import pathlib
 import time
+
+sys.path.insert(0, str(pathlib.Path(__file__).parent.parent.resolve()))
+
 from fastapi import FastAPI, Form, UploadFile, File, HTTPException
 from celery.result import AsyncResult
 from files.storage_manager import StorageManager
@@ -11,7 +16,6 @@ from pydantic import BaseModel, Field, field_validator
 import ollama
 import base64
 from typing import Optional
-
 
 def storage_profile_exists(profile_name: str) -> bool:
     profile_path = os.path.abspath(os.path.join(os.getenv('STORAGE_PROFILE_PATH', '/storage_profiles'), f'{profile_name}.yaml'))
