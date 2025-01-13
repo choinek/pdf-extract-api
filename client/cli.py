@@ -4,8 +4,12 @@ import requests
 import time
 import os
 
+# chcemy utrzymywac te cli  ? Mam mieszane uczucia, bo wszystko co tu jest zrobione to proxy do api, lepiej by bylo juz zeby ludzie sobie curlami strzelali bo utrzymywanie tego pliku bedzie meczace
+# a jak bardzo chcemy go utrzymywac to zrobilbym - tez w opraciu o curla - skrypcik proxujacy; parametry bedzie zbieral z openapi do helpa
+# chyba ze to cos z generatora zrobione, to jeszcze nie dotarlem do tego
+
 def ocr_upload(file_path, ocr_cache, prompt, prompt_file=None, model='llama3.1', strategy='llama_vision', storage_profile='default', storage_filename=None):
-    ocr_url = os.getenv('OCR_UPLOAD_URL', 'http://localhost:8000/ocr/upload')
+    ocr_url = os.getenv('OCR_UPLOAD_URL', 'http://localhost:8000/ocr/upload') # myślę nad tym, czy nie powinniśmy przyjąć strategi, że albo ktoś sobie ustawił envy, albo nie puszczamy; ja bym defaultów nie zakładał tutaj i to właśnie nie na niekorzyść użytkownika, tylko w drugą stronę - nie będzie wiedział skąd się te wartości biorą a tak dostałby jasne info, że sobie .env nie ustawił. Temat dotyczy uniwersalnie całego projektu w kwestii pobierania .envów nieoczywistych (dla mnie adres url nie jest oczywisty nawet jak ma jakiś standardowy port na localhost bo później wjadą inne ai a zasadę będziemy mieli jedną)
     files = {'file': open(file_path, 'rb')}
     if not ocr_cache:
         print("OCR cache disabled.")

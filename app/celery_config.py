@@ -2,7 +2,7 @@ from celery import Celery
 import os
 from dotenv import load_dotenv
 
-load_dotenv(".env")
+load_dotenv(".env") # daj znać jaki za tym jest zamysł, czemu akurat .env, co z .env.localhost itp.
 
 import multiprocessing
 multiprocessing.set_start_method("spawn", force=True)
