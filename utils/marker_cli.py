@@ -2,7 +2,6 @@ from marker.convert import convert_single_pdf
 from marker.models import load_all_models
 import argparse
 
-# to jkis plik tetowy?
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process a PDF/Office/Image file.")
     parser.add_argument("file", type=str, nargs='?', default="../examples/example-mri.pdf", help="The path to the PDF/Office/Image file to be processed.")
